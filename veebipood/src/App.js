@@ -1,6 +1,6 @@
 //import logo from './logo.svg';
 import './App.css';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Avaleht from './pages/Avaleht';
 import Esindused from './pages/Esindused';
 import Kinkekaart from './pages/Kinkekaart';
@@ -9,6 +9,8 @@ import LisaToode from './pages/LisaToode';
 import Seaded from './pages/Seaded';
 import Kalkulaator from './pages/Kalkulaator';
 import NotFound from './pages/NotFound';
+import Menyy from './components/Menyy';
+
 
 // igal HTML elemendil peab olema algus ja lõpp või ta on self-closing
 // HTMLi omadused pannakse alguse sisse: <div OMADUSED_SIIA></div>
@@ -17,33 +19,7 @@ function App() {
   return (
     <div className="App">
 
-      <Link to="/">
-        <img className="pilt" src="https://estonia.ee/wp-content/uploads/nobe_netist_1-1344x896.jpg" alt="" />
-      </Link>
-
-      <Link to="/esindused">
-       <button className="nupp">Meie esindused</button>
-      </Link>
-
-      <Link to="/osta-kinkekaart">
-       <button className="nupp">Mine kinkekaarti ostma</button>
-      </Link>
-
-      <Link to="/ostukorv">
-       <button className="nupp">Ostukorv</button>
-      </Link>
-
-      <Link to="/lisa-toode">
-       <button className="nupp">Lisa toode</button>
-      </Link>
-
-      <Link to="/seaded">
-       <button className="nupp">Seaded</button>
-      </Link>
-
-      <Link to="/kalkulaator">
-       <button className="nupp">Kalkulaator</button>
-      </Link>
+      <Menyy />
     
       {/* localhost:3000/esindused   <div>10 esindust</div>
           localhost:3000/osta-kinkekaart <div>Kinkekaardi ostmine</div>
@@ -65,3 +41,13 @@ function App() {
 }
 
 export default App;
+
+
+// E 21.10   13.30
+// K 23.10   9.00-12.15
+// E 28.10   13.30
+// K 30.10   13.30
+// E 04.11   13.30
+// K 06.11   9.00
+// T 12.11   13.30
+// N 14.11   13.30

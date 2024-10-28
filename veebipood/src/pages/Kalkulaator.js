@@ -1,37 +1,30 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
+import StandardKalkulaator from '../components/StandardKalkulaator';
 
 function Kalkulaator() {
   const [vaade, muudaVaade] = useState("standard");
+  
+  const sisestusRef = useRef();
+  const [hind, muudaHind] = useState(1000);
 
-  const [number, muudaNumber] = useState(0);
-
+  function arvuta() {
+    muudaHind(sisestusRef.current.value);
+  }
 
   return (
     <div>
       <div>{vaade}</div>
-      <button onClick={() => muudaVaade("standard")}>Standard kalkulaator</button>
-      <button onClick={() => muudaVaade("laenu")}>Laenukalkulaator</button>
-      <button onClick={() => muudaVaade("maksimaalne")}>Maksimaalne limiit</button>
+      <button className={vaade === "standard" ? "vaade-aktiivne" : "vaade"} onClick={() => muudaVaade("standard")}>Standard kalkulaator</button>
+      <button className={vaade === "laenu" ? "vaade-aktiivne" : "vaade"} onClick={() => muudaVaade("laenu")}>Laenukalkulaator</button>
+      <button className={vaade === "maksimaalne" ? "vaade-aktiivne" : "vaade"} onClick={() => muudaVaade("maksimaalne")}>Maksimaalne limiit</button>
 
-      {vaade === "standard" &&
-      <div>
-        <div>{number * 3.65}</div>
-        <button onClick={() => muudaNumber(1)}>1</button>
-        <button onClick={() => muudaNumber(2)}>2</button>
-        <button onClick={() => muudaNumber(3)}>3</button>
-        <br />
-        <button onClick={() => muudaNumber(4)}>4</button>
-        <button onClick={() => muudaNumber(5)}>5</button>
-        <button onClick={() => muudaNumber(6)}>6</button>
-        <br />
-        <button onClick={() => muudaNumber(7)}>7</button>
-        <button onClick={() => muudaNumber(8)}>8</button>
-        <button onClick={() => muudaNumber(9)}>9</button>   
-      </div>}
+      {vaade === "standard" && <StandardKalkulaator /> }
 
       {vaade === "laenu" && 
         <div>
-          Kuumakse: {}
+          <input ref={sisestusRef} type="text" />
+          <button onClick={arvuta}>Arvuta</button>
+          Kuumakse: {hind * 3.65 / 12}
         </div>
       }
 

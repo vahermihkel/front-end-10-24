@@ -29,3 +29,52 @@
 .pilt:active {
   transform: scale(95%);
 }
+
+.keel {
+  font-size: 20px;
+}
+
+.keel-aktiivne {
+  font-size: 20px;
+  font-weight: bold;
+  background-color: lightblue;
+}
+
+.summa {
+  cursor: pointer;
+  font-size: 20px;
+  background-color: white;
+  padding: 20px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.summa-aktiivne {
+  cursor: pointer;
+  font-size: 20px;
+  background-color: white;
+  padding: 20px;
+  margin: 5px;
+  border-radius: 5px;
+
+  border-color: rgb(227 6 140);
+  color: rgb(227 6 140)
+}
+
+.linn-aktiivne {
+  text-decoration: underline;
+}
+
+.vaade {
+  padding: 15px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.vaade-aktiivne {
+  padding: 15px;
+  margin: 5px;
+
+  background-color: black;
+  color: white;
+}
