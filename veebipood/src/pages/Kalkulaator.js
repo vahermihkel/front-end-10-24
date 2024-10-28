@@ -1,15 +1,17 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import StandardKalkulaator from '../components/StandardKalkulaator';
+import LaenuKalkulaator from '../components/LaenuKalkulaator';
+import MaksimaalneKalkulaator from '../components/MaksimaalneKalkulaator';
 
 function Kalkulaator() {
   const [vaade, muudaVaade] = useState("standard");
   
-  const sisestusRef = useRef();
-  const [hind, muudaHind] = useState(1000);
+  // const sisestusRef = useRef();
+  // const [hind, muudaHind] = useState(1000);
 
-  function arvuta() {
-    muudaHind(sisestusRef.current.value);
-  }
+  // function arvuta() {
+  //   muudaHind(sisestusRef.current.value);
+  // }
 
   return (
     <div>
@@ -20,19 +22,15 @@ function Kalkulaator() {
 
       {vaade === "standard" && <StandardKalkulaator /> }
 
-      {vaade === "laenu" && 
-        <div>
-          <input ref={sisestusRef} type="text" />
-          <button onClick={arvuta}>Arvuta</button>
-          Kuumakse: {hind * 3.65 / 12}
-        </div>
+      {vaade === "laenu" && <LaenuKalkulaator />
+        // <div>
+        //   <input ref={sisestusRef} type="text" />
+        //   <button onClick={arvuta}>Arvuta</button>
+        //   Kuumakse: {hind * 3.65 / 12}
+        // </div>
       }
 
-      {vaade === "maksimaalne" && 
-        <div>
-          Maksimaalne pakutav limiit: {}
-        </div>
-      }
+      {vaade === "maksimaalne" && <MaksimaalneKalkulaator />}
     </div>
   )
 }

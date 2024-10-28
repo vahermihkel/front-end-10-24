@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 
 function Kinkekaart() {
   const [summa, muudaSumma] = useState(20);
+  const [kogus, muudaKogus] = useState(1);
 
   const emailRef = useRef();
 
@@ -28,6 +29,16 @@ function Kinkekaart() {
       <br /><br />
 
       <div>Kinkekaart {summa}€</div>
+
+      <br /><br />
+
+      <button disabled={kogus === 1} onClick={() => muudaKogus(kogus - 1)}>-</button>
+      <span>{kogus}</span>
+      <button onClick={() => muudaKogus(kogus + 1)}>+</button>
+
+      <br /><br />
+
+      Kinkekaartide kogusumma: <span>{summa * kogus}</span>
 
       <br /><br />
 
