@@ -9,10 +9,6 @@ function Menyy() {
         <img className="pilt" src="https://estonia.ee/wp-content/uploads/nobe_netist_1-1344x896.jpg" alt="" />
       </Link>
 
-      <Link to="/esindused">
-       <button className="nupp">Meie esindused</button>
-      </Link>
-
       <Link to="/osta-kinkekaart">
        <button className="nupp">Mine kinkekaarti ostma</button>
       </Link>
@@ -32,6 +28,43 @@ function Menyy() {
       <Link to="/kalkulaator">
        <button className="nupp">Kalkulaator</button>
       </Link>
+
+      <br /><br />
+
+      <Link to="/esindused">
+       <button className="nupp">Meie esindused</button>
+      </Link>
+
+      <Link to="/hinnad">
+       <button className="nupp">Hinnad</button>
+      </Link>
+
+      <Link to="/tootajad">
+       <button className="nupp">Töötajad</button>
+      </Link>
+
+      <Link to="/tooted">
+       <button className="nupp">Tooted</button>
+      </Link>
+
+      <br /><br />
+
+      <Link to="/halda-esindused">
+       <button className="nupp">Halda esindused</button>
+      </Link>
+
+      <Link to="/halda-hinnad">
+       <button className="nupp">Halda hinnad</button>
+      </Link>
+
+      <Link to="/halda-tootajad">
+       <button className="nupp">Halda töötajad</button>
+      </Link>
+
+      <Link to="/halda-tooted">
+       <button className="nupp">Halda tooted</button>
+      </Link>
+
     </div>
   )
 }

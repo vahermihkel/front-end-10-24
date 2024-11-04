@@ -8,6 +8,27 @@ import React, { useState } from 'react'
 // kui on jutumärgid --> võin väärtuseks anda ükskõik mille
 // ilma jutumärkideta --> võin väärtuseks anda kas numbreid või true/false
 
+// [] --> array jaoks, useState vasakul pool on array
+// {} --> JavaScriptis koodibloki jaoks / objekti jaoks
+//          HTMLs JavaScripti tähistus
+// () --> funktsiooni väljakutsumiseks
+// =  --> väärtuse andmiseks
+// === -> kontrolliks, kas vasak ja parem pool on identne
+// &&  -> kas HTMLs näidatakse välja
+// <=  -> väiksem võrdne
+// >=  -> suurem võrdne
+// =>  -> nool ehk kasutame funktsioonide juures, for tsükli juures
+// !== -> kontrollime et vasak ja parem pool pole identseks
+// %   -> jäägi märk   5 % 2 === 1
+// ? : -> ternary operator - lühendatud if/else 
+// ?/:  if/else    TRUE/FALSE ? KUI_TRUE : KUI_FALSE 
+// ,   -> array sees elementide eraldamiseks
+// ;   -> rea lõpetamiseks
+// .   -> muutuja seest mingi funktsiooni välja kutseks
+//          objekti seest võtme abil väärtuse saamiseks
+// ""   ''   -> sobivad nii ühekordsed kui ka kahekordsed jutumärgid
+
+
 function Avaleht() {
   const [laigitud, muudaLaigitud] = useState(true);
   const [kogus, muudaKogus] = useState(0);
