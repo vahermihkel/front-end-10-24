@@ -1,5 +1,6 @@
 import React from 'react'
 
+// {"nimi": "", "hind": 25000, "aktiivne": true, "pilt": ""}
 // Nobe, Toyota, Bentley, BMW, Tesla, Nissan, ...
 
 // Sorteeri

@@ -2,6 +2,7 @@ import React from 'react'
 
 // Ootus/lootus: proovida võimalikult kaua ise kirjutada
 
+// {"eesnimi": "", "ametikoht": "", "tel": "41312321"}
 
 // Sorteeri
   // 1. A-Z
@@ -17,6 +18,7 @@ import React from 'react'
   // 4. Kellel on neljas täht "i"
   // 5. 'M' tähega algavad
   // 6. Huvitav: Paarisarv tähti
+
 
   // Reset nupp
 

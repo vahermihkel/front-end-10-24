@@ -1,42 +1,76 @@
 import React, { useRef, useState } from 'react'
+import esindusedJSON from "../../data/esindused.json"
 
 function HaldaEsindused() {         //            0            1                 2
-  const [esindused, muudaEsindused] = useState(["Ülemiste", "Rocca al Mare", "Magistrali", "Vesse", "Kristiine", "Järveotsa", "Ämari"]);
-  const esindusRef = useRef();
+  const [esindused, muudaEsindused] = useState(esindusedJSON.slice());
+  const esindusRef = useRef(); // iga inputi jaoks oma useRef();
+  const telefonRef = useRef();
+  const aadressRef = useRef();
+
+  const otsingRef = useRef();
 
   const kustutaEsimene = () => {
-    esindused.splice(0, 1); // .splice --> kustutamiseks
+    esindusedJSON.splice(0, 1); // .splice --> kustutamiseks
             // number 0 tähendab mitmendat järjekorras
             // number 1 tähendab mitu tükki alates selles elemendist
-    muudaEsindused(esindused.slice()); // sama mis .sort() järgselt
+    muudaEsindused(esindusedJSON.slice()); // sama mis .sort() järgselt
 // uuendab HTMLi, pannes uuendatud esindused esindused muutuja peale
   }
 
   const kustutaTeine = () => {
-    esindused.splice(1, 1);
-    muudaEsindused(esindused.slice());
+    esindusedJSON.splice(1, 1);
+    muudaEsindused(esindusedJSON.slice());
   }
 
   const kustutaKolmas = () => {
-    esindused.splice(2, 1);
-    muudaEsindused(esindused.slice());
+    esindusedJSON.splice(2, 1);
+    muudaEsindused(esindusedJSON.slice());
   }
 
   const kustuta = (index) => {
-    esindused.splice(index, 1);
-    muudaEsindused(esindused.slice());
+    esindusedJSON.splice(index, 1);
+    muudaEsindused(esindusedJSON.slice());
   }
 
+  // TODO: Enteriga sisestamine
   const lisaEsindus = () => {
-    esindused.push(esindusRef.current.value);
-    muudaEsindused(esindused.slice());
+    esindusedJSON.push(
+      {"nimi": esindusRef.current.value, "tel": telefonRef.current.value, "aadress": aadressRef.current.value}
+    );
+    muudaEsindused(esindusedJSON.slice());
     esindusRef.current.value = "";
+  }
+
+  const otsi = () => {
+    const vastus = esindusedJSON.filter(esindus => 
+      esindus.nimi.toLowerCase().includes(otsingRef.current.value.toLowerCase())
+    );
+    muudaEsindused(vastus);
+  }
+
+  const arvutaKokku = () => {
+    let summa = 0;
+    esindused.forEach(esindus => summa = summa + esindus.nimi.length)
+    return summa;
   }
 
   return (
     <div>
+      <div>Tähti kokku kõikide esinduste peale: {arvutaKokku()} tk</div>
+      
+      <br /><br />
+
+      <input onChange={otsi} ref={otsingRef} type="text" />
+      {/* <button onClick={otsi}>Otsi</button> */}
+
+      <br /><br />
+
       <label>Esindus</label> <br />
       <input ref={esindusRef} type="text" /> <br />
+      <label>Telefon</label> <br />
+      <input ref={telefonRef} type="text" /> <br />
+      <label>Aadress</label> <br />
+      <input ref={aadressRef} type="text" /> <br />
       <button onClick={lisaEsindus}>Lisa</button>
 
       <div>Kokku esindusi: {esindused.length} tk</div>
@@ -52,6 +86,8 @@ function HaldaEsindused() {         //            0            1                
             <th>Index</th>
             <th>JrkNr</th>
             <th>Esindus</th>
+            <th>Telefon</th>
+            <th>Aadress</th>
             <th>Kustuta</th>
           </tr>
         </thead>
@@ -60,7 +96,9 @@ function HaldaEsindused() {         //            0            1                
             <tr key={index}>
               <td>{index}</td>
               <td>{index+1}</td>
-              <td>{esindus}</td>
+              <td>{esindus.nimi}</td>
+              <td>{esindus.tel}</td>
+              <td>{esindus.aadress}</td>
               <td><button onClick={() => kustuta(index)}>x</button></td>
             </tr>)}
         </tbody>
@@ -68,5 +106,16 @@ function HaldaEsindused() {         //            0            1                
     </div>
   )
 }
+
+// 3 varianti kuidas funktsioone käivitada
+// 1. <button onClick={() => kustuta(index)}></button>
+//          ---> kui midagi saadetakse funktsiooni sisse, siis on vaja panna lõppu sulud ja 
+//               algusesse sulud + nool: () => . Nii on kohustuslik.
+// 2. <button onClick={lisa}></button>
+//          ---> kui midagi ei saadeta funktsiooni sisse, siis pole vaja lõppu sulge panna, aga
+//                kui tahta, siis võib
+//      <button onClick={lisa}></button> on sama, mis  <button onClick={() => lisa()}></button>
+// 3. <div>{arvutaKokku()}</div>    
+//          ---> ilma klikkimata käivitatakse funktsioon. Nii on kohustuslik
 
 export default HaldaEsindused

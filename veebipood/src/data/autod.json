@@ -1,0 +1,8 @@
+[
+  {"nimi": "Nobe", "hind": 25000, "aktiivne": true, "pilt": ""},
+  {"nimi": "Toyota", "hind": 45000, "aktiivne": true, "pilt": ""},
+  {"nimi": "Bentley", "hind": 125000, "aktiivne": false, "pilt": ""},
+  {"nimi": "BMW", "hind": 55000, "aktiivne": true, "pilt": ""},
+  {"nimi": "Tesla", "hind": 85000, "aktiivne": false, "pilt": ""},
+  {"nimi": "Nissan", "hind": 35000, "aktiivne": true, "pilt": ""}
+]

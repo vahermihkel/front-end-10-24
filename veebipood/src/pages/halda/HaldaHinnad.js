@@ -1,24 +1,29 @@
 import React, { useRef, useState } from 'react'
+import hinnadJSON from "../../data/hinnad.json"
 
 function HaldaHinnad() {
-  const [hinnad, muudaHinnad] = useState([45, 9, 80, 123, 1000, 51, 77, 321, 91, 23]);
+  const [hinnad, muudaHinnad] = useState(hinnadJSON.slice());
   const hindRef = useRef();
 
   const kustuta = (index) => {
-    hinnad.splice(index, 1);
-    muudaHinnad(hinnad.slice());
+    hinnadJSON.splice(index, 1); // võtan failist ühe hinna vähemaks
+    muudaHinnad(hinnadJSON.slice()); // uuenda failist
   }
 
-  const lisa = () => {
-    hinnad.push(hindRef.current.value);
-    muudaHinnad(hinnad.slice());
+  const lisa = (event) => {
+    console.log(event);
+    if (event.key !== "Enter" && event.type !== "click") {
+      return;
+    }
+    hinnadJSON.push({"number": hindRef.current.value, "lisaja": "sisselogitud_kasutaja"});
+    muudaHinnad(hinnadJSON.slice());
     hindRef.current.value = "";
   }
 
   return (
     <div>
       <label>Uus number</label> <br />
-      <input ref={hindRef} type="text" /> <br />
+      <input onKeyUp={lisa} ref={hindRef} type="text" /> <br />
       <button onClick={lisa}>Sisesta</button> <br />
 
       <table>
@@ -27,6 +32,7 @@ function HaldaHinnad() {
             <th>Index</th>
             <th>Jrknr</th>
             <th>Hind</th>
+            <th>Lisaja</th>
             <th>Kustuta</th>
           </tr>
         </thead>
@@ -35,7 +41,8 @@ function HaldaHinnad() {
           <tr key={index}>
             <td>{index}</td> 
             <td>{index + 1}</td> 
-            <td>{hind}</td>
+            <td>{hind.number}</td>
+            <td>{hind.lisaja}</td>
             <td><button onClick={() => kustuta(index)}>x</button></td>
           </tr>)}
         </tbody>
