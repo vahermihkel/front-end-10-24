@@ -29,6 +29,14 @@ function Menyy() {
        <button className="nupp">Kalkulaator</button>
       </Link>
 
+      <Link to="/tagasiside">
+       <button className="nupp">Anna meile tagasisidet</button>
+      </Link>
+
+      <Link to="/kaart">
+       <button className="nupp">Vt meie poode</button>
+      </Link>
+
       <br /><br />
 
       <Link to="/esindused">

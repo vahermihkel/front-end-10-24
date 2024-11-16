@@ -91,3 +91,16 @@ th, td {
 th {
   background-color: lightgray;
 }
+
+.toote-pilt {
+  height: 100px;
+  width: 200px;
+}
+
+.aktiivne {
+  background-color: rgb(145, 249, 145);
+}
+
+.mitteaktiivne {
+  background-color: rgb(249, 125, 125);
+}

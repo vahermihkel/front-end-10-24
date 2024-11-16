@@ -27,6 +27,10 @@ import YksTootaja from './pages/yks/YksTootaja';
 import YksToode from './pages/yks/YksToode';
 import YksAuto from './pages/yks/YksAuto';
 import YksKasutaja from './pages/yks/YksKasutaja';
+import { ContactUs } from './pages/ContactUs';
+import Kaart from './pages/Kaart';
+import MuudaAuto from './pages/muuda/MuudaAuto';
+import MuudaEsindus from './pages/muuda/MuudaEsindus';
 
 
 // igal HTML elemendil peab olema algus ja lõpp või ta on self-closing
@@ -65,11 +69,17 @@ function App() {
           <Route path="halda-kasutajad" element={ <HaldaKasutajad /> } />
 
           <Route path="esindus/:index" element={ <YksEsindus /> } />
-          <Route path="hind" element={ <YksHind /> } />
-          <Route path="tootaja" element={ <YksTootaja /> } />
-          <Route path="toode" element={ <YksToode /> } />
+          <Route path="hind/:number" element={ <YksHind /> } />
+          <Route path="tootaja/:inimene" element={ <YksTootaja /> } />
+          <Route path="toode/:toodeIndex" element={ <YksToode /> } />
           <Route path="auto/:auto_id" element={ <YksAuto /> } />
-          <Route path="kasutaja" element={ <YksKasutaja /> } />
+          <Route path="kasutaja/:kasutaja" element={ <YksKasutaja /> } />
+
+          <Route path="tagasiside" element={ <ContactUs /> } />
+          <Route path="kaart" element={ <Kaart /> } />
+
+          <Route path="muuda-auto/:jrknr" element={ <MuudaAuto /> } />
+          <Route path="muuda-esindus/:esinduse_index" element={ <MuudaEsindus /> } />
 
           <Route path="*" element={ <NotFound /> } />
         </Routes>
@@ -90,7 +100,7 @@ export default App;
 // 8.  K 06.11   9.00
 
 // 9.  K 13.11   13.30
-// 10. R 15.11   13.30
+// 10. R 15.11   13.30 KOJU: https://react-hot-toast.com/
 
 // 11. E 18.11   13.30
 // 12. K 20.11   13.30

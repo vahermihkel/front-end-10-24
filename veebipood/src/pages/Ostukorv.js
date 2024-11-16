@@ -12,24 +12,30 @@ function Ostukorv() {
   const [tooted, muudaTooted] = useState(ostukorvFailist.slice());
 
   function kustuta(index) {
-    ostukorvFailist.splice(index,1);
+    ostukorvFailist.splice(index,1); // splice(mitmendat, mitu tk)
+    muudaTooted(ostukorvFailist.slice());
+  }
+
+  function tyhjenda() {
+    ostukorvFailist.splice(0);  // alates 0ndast (esimesest) lõpuni välja
     muudaTooted(ostukorvFailist.slice());
   }
 
   return (
     <div>
-      <button onClick={() => muudaTooted([])}>Tühjenda</button>
+      <button onClick={tyhjenda}>Tühjenda</button>
       {tooted.map((toode, index) => 
         <div key={index}>
-          {toode.nimi}
+          <img src={toode.pilt} style={{"width": "50px"}} alt="" />
+          {toode.nimi} - {toode.hind}€  
           <button onClick={() => kustuta(index)}>x</button>
         </div>
       )}
       {tooted.length === 0 && 
         <div>
           Ostukorv on tühi
-          <Link to="/">
-            Mine avalehele
+          <Link to="/tooted">
+            Mine tooteid lisama
           </Link>  
         </div>}
       

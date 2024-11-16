@@ -1,0 +1,8 @@
+[
+  {"nimi": "Nobe", "hind": 25000, "aktiivne": true, "pilt": ""},
+  {"nimi": "Toyota", "hind": 45000, "aktiivne": true, "pilt": "https://kobemotor.es/wp-content/uploads/2024/05/Toyota-RAV4-Luxury.png"},
+  {"nimi": "Bentley", "hind": 125000, "aktiivne": false, "pilt": ""},
+  {"nimi": "BMW", "hind": 55000, "aktiivne": true, "pilt": "https://www.bmw-m.com/content/dam/bmw/marketBMW_M/www_bmw-m_com/all-models/model-navigation/bmw-m8-competition-coupe-flyout.png"},
+  {"nimi": "Tesla", "hind": 85000, "aktiivne": false, "pilt": "https://e7852c3a.rocketcdn.me/wp-content/uploads/2024/02/Tesla-Roadster-0-1.jpg"},
+  {"nimi": "Nissan", "hind": 35000, "aktiivne": true, "pilt": ""}
+]
