@@ -104,3 +104,18 @@ th {
 .mitteaktiivne {
   background-color: rgb(249, 125, 125);
 }
+
+.lang {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+}
+
+.lang:hover {
+  cursor: pointer;
+  opacity: 70%;
+}
+
+.lang:active {
+  padding: 1px;
+}

@@ -9,7 +9,7 @@ import LisaToode from './pages/LisaToode';
 import Seaded from './pages/Seaded';
 import Kalkulaator from './pages/Kalkulaator';
 import NotFound from './pages/NotFound';
-import Menyy from './components/Menyy';
+// import Menyy from './components/Menyy';
 import Hinnad from './pages/arrays/Hinnad';
 import Tootajad from './pages/arrays/Tootajad';
 import Tooted from './pages/arrays/Tooted';
@@ -31,6 +31,8 @@ import { ContactUs } from './pages/ContactUs';
 import Kaart from './pages/Kaart';
 import MuudaAuto from './pages/muuda/MuudaAuto';
 import MuudaEsindus from './pages/muuda/MuudaEsindus';
+import NavigationBar from './components/NavigationBar';
+import MuudaToode from './pages/muuda/MuudaToode';
 
 
 // igal HTML elemendil peab olema algus ja lõpp või ta on self-closing
@@ -40,7 +42,8 @@ function App() {
   return (
     <div className="App">
 
-      <Menyy />
+      {/* <Menyy /> */}
+      <NavigationBar />
     
       {/* localhost:3000/esindused   <div>10 esindust</div>
           localhost:3000/osta-kinkekaart <div>Kinkekaardi ostmine</div>
@@ -80,6 +83,7 @@ function App() {
 
           <Route path="muuda-auto/:jrknr" element={ <MuudaAuto /> } />
           <Route path="muuda-esindus/:esinduse_index" element={ <MuudaEsindus /> } />
+          <Route path="muuda-toode/:toote_index" element={ <MuudaToode /> } />
 
           <Route path="*" element={ <NotFound /> } />
         </Routes>

@@ -4,8 +4,10 @@ import { Link } from "react-router-dom"
 import ostukorvFailist from "../../data/ostukorv.json"
 import { ToastContainer, toast } from 'react-toastify';
 import { Button, TextField } from '@mui/material';
- 
+import { useTranslation } from 'react-i18next'; 
+
 function Tooted() { 
+      const { t } = useTranslation();
       const [tooted, muudaTooted] = useState(tootedJSON.slice())
       const otsingRef = useRef();
 
@@ -66,13 +68,14 @@ function Tooted() {
  
   return (
     <div>
+      {/* <h1>{t('Welcome to React')}</h1> */}
       <br />
       <TextField label="Otsi" onChange={otsi} inputRef={otsingRef} type="text" />
       <div>Tähed kokku: {arvutaKokku()}</div>
 
-      <span>Sorteeri: </span>
-      <Button onClick={sorteeriAZ}>Sorteeri A-Z</Button>
-      <Button onClick={sorteeriZA}>Sorteeri Z-A</Button>
+      <span>{t("sort-header")}</span>
+      <Button onClick={sorteeriAZ}>{t("sort-az")}</Button>
+      <Button onClick={sorteeriZA}>{t("sort-za")}</Button>
       <Button onClick={sorteeriTahemargidKasv}>Sorteeri tähemärkide arv kasvavalt</Button>
       <Button onClick={sorteeriTahemargidKah}>Sorteeri tähemärkide arv kahanevalt</Button><br /><br />
       <br />

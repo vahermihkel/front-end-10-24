@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import 'leaflet/dist/leaflet.css';
-import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css'; // 150 className="active"
+import 'leaflet/dist/leaflet.css'; // 10 className
+import 'react-toastify/dist/ReactToastify.css'; // 5 className
 // kõike on võimalik üle kirjutada programmeerimises allpool
 // let muutuja = 2;
 // muutuja = 3;
 import './index.css';
+import './i18n';
 import App from './App';
 // import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';

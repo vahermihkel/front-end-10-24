@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import tootedJSON from "../../data/tooted.json"; 
 import { ToastContainer, toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 // suure tähega HTML, väiksega JS
 
 function HaldaTooted() {
@@ -39,6 +40,7 @@ function kustuta(index) {
           <th>Pilt</th>
           {/* <th>Aktiivne</th> */}
           <th>Kustuta</th>
+          <th>Muuda</th>
         </tr>
       </thead>
       <tbody>
@@ -49,6 +51,11 @@ function kustuta(index) {
         <td>{toode.pilt}</td>
         {/* <td>{toode.aktiivne}</td> */}
         <td><button onClick={() => kustuta(index)}>x</button></td>
+        <td>
+          <Link to={"/muuda-toode/" + index}>
+            <button>Muuda</button>
+          </Link>
+        </td>
       </tr>)}
       </tbody>
       </table>
