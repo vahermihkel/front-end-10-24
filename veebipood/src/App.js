@@ -108,3 +108,23 @@ export default App;
 
 // 11. E 18.11   13.30
 // 12. K 20.11   13.30
+
+// 13. E 25.11   13.30
+// 14. K 27.11   13.30 ???????
+
+// 15. E 02.12   13.30
+// 16. K 04.12   13.30
+
+// 17. K 11.12   13.30
+
+// 18. K 18.12   13.30-15.00   Reactiga kõik
+
+// jaanuaris --> Annikaga edasi mobiilirakendused
+// 5 kohtumist --> 3ak/h
+
+
+// Ülesanne:
+// 1. copy-paste mingeid tükke kuskilt samast projektist
+// 2. copy-paste juba tehtud projektidest
+// 3. internetist / Youtubest / ChatGPT
+// 4. ise kirjutamine

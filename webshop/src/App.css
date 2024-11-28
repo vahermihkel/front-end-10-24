@@ -1,0 +1,21 @@
+.App {
+  text-align: center;
+}
+
+.product-active {
+  background-color: rgb(156, 216, 156);
+}
+
+.inactive {
+  background-color: rgb(241, 190, 190);
+}
+
+.carouselImage {
+  height: 200px;
+  width: 500px;
+}
+
+.carousel {
+  width: 650px;
+  margin: auto;
+}
