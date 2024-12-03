@@ -1,32 +1,36 @@
 import React, { useState } from 'react' // node_modules
 import { Link } from 'react-router-dom' // node_modules
-import cartJSON from "../../data/cart.json" // meie fail
+//import cartJSON from "../../data/cart.json" // meie fail
 import ParcelMachines from '../../components/cart/ParcelMachines';
 import Payment from '../../components/cart/Payment';
+import "../../css/Cart.css"; // laiendi ei pea panema .js failidele
+// ülejäänutele peab kirjutama faili lõppu laiendi: .css, .json, .svg, .png
  
 function Cart() {
-        const [products, setProducts] = useState(cartJSON.slice());
- 
-         function eraseByOne (index) {
-            cartJSON.splice(index, 1);
-            setProducts(cartJSON.slice());
- 
-         }
-         function emptyCart () {
-            cartJSON.splice(0); 
-            setProducts(cartJSON.slice());
- 
-         }
-         const sumPrice = ( ) => {
-          let sum = 0;
-          products.forEach(product => sum = sum + product.price);
-          return sum;
-         }
-        //  const sumPcs = ( ) => {
-        //     let sum = 0;
-        //     products.forEach(product => sum = sum += product.id);
-        //     return sum;
-        //  }   
+  const [products, setProducts] = useState(JSON.parse(localStorage.getItem("cart")) || []);
+
+  function eraseByOne (index) {
+    products.splice(index, 1);
+    setProducts(products.slice());
+    localStorage.setItem("cart", JSON.stringify(products));
+  }
+
+  function emptyCart () {
+    products.splice(0); 
+    setProducts(products.slice()); // HTMLi uuendamiseks
+    localStorage.setItem("cart", JSON.stringify(products)); // salvestuseks
+  }
+  
+  const sumPrice = ( ) => {
+  let sum = 0;
+  products.forEach(product => sum = sum + product.price);
+  return sum;
+  }
+//  const sumPcs = ( ) => {
+//     let sum = 0;
+//     products.forEach(product => sum = sum += product.id);
+//     return sum;
+//  }   
   return (
     <div>
       {products.length > 0 && 
@@ -36,13 +40,15 @@ function Cart() {
       </>}
  
       {products.map(product => 
-      <div key={product.id}>
-        <img  src={product.image} style= {{"width": "50px"}} alt="" />
- 
-            <div>{product.title}</div>
-            <div>Price: {product.price.toFixed(2)}€</div>
- 
-        <button onClick={() =>eraseByOne(product)}>x</button>
+      <div className="product" key={product.id}>
+        <span className="product-left">
+          <img className="image" src={product.image} alt="" />
+          <div className="title">{product.title}</div>
+        </span>
+        <span className="product-right">
+          <div className="price">{product.price.toFixed(2)}€</div>
+          <button className="button" onClick={() =>eraseByOne(product)}>x</button>
+        </span>
       </div>
  
     )}

@@ -1,0 +1,74 @@
+.product {
+ display: flex; /* vasakult paremale */
+ justify-content: space-between;
+ margin: 0 10%;
+ border-bottom: 1px solid lightgray;
+ padding: 10px 0;
+}
+
+.image {
+  width: 50px;
+  height: 50px;
+}
+
+.title {
+  width: 200px;
+  text-align: left;
+  font-weight: bold;
+  font-size: 12px;
+  display: grid;
+  align-items: center;
+}
+
+.price {
+  width: 80px;
+  font-size: 12px;
+  display: grid;
+  align-items: center;
+}
+
+.button {
+  min-width: 30px !important;
+  height: 30px !important;
+  padding: 0 !important;
+}
+
+.product-left {
+  display: flex;
+  justify-content: space-between;
+  width: 500px;
+}
+
+.product-right {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
+
+/* tahvlivaade */
+@media only screen and (max-width: 1023px) {
+  /* body {
+    background-color: red;
+  } */
+}
+
+/* mobiilivaade */
+@media only screen and (max-width: 600px) {
+  /* body {
+    background-color: blue;
+  } */
+  select {
+    width: 300px;
+  }
+  .product-left {
+    display: block;
+    text-align: left;
+  }
+  .product-right {
+    display: block;
+    text-align: right;
+  }
+  .price {
+    width: 130px;
+  }
+}

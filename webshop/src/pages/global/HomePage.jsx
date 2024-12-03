@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import productsFromFile from "../../data/products.json";
-import cartFromFile from '../../data/cart.json';
+//import cartFromFile from '../../data/cart.json';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Link } from 'react-router-dom';
 import Gallery from '../../components/Gallery';
@@ -10,40 +10,49 @@ import Gallery from '../../components/Gallery';
 function HomePage() {
   const [products, setProducts] = useState(productsFromFile.slice());
  
-function addToCart(product) {
-  cartFromFile.push(product);
-  // HILJEM: toast.success();
+  function addToCart(product) {
+    //cartFromFile.push(product);
+    const cartLS = JSON.parse(localStorage.getItem("cart")) || [];
+    cartLS.push(product);
+    localStorage.setItem("cart", JSON.stringify(cartLS));
+
+    // LocalStorage-sse ARRAY lisamiseks
+    // 1. võtta localStorage-st:   localStorage.getItem
+    // 2. võtta jutumärgid maha:   JSON.parse()
+    // 3. pushida lisatule juurde:    .push
+    // 4. panna jutumärgid tagasi:   JSON.stringify()
+    // 5. panna localStorage-sse tagasi:   localStorage.setItem
   }
  
-function sortAZ() {
-  products.sort((a, b) => a.title.localeCompare (b.title));
-  setProducts(products.slice());
-}
+  function sortAZ() {
+    products.sort((a, b) => a.title.localeCompare (b.title));
+    setProducts(products.slice());
+  }
  
-function sortZA() {
-  products.sort((a, b) => b.title.localeCompare (a.title));
-  setProducts(products.slice());
-} 
+  function sortZA() {
+    products.sort((a, b) => b.title.localeCompare (a.title));
+    setProducts(products.slice());
+  } 
  
-function priceLowToHigh() {
-  products.sort((a, b) => a.price - b.price);
-  setProducts(products.slice());
-}
+  function priceLowToHigh() {
+    products.sort((a, b) => a.price - b.price);
+    setProducts(products.slice());
+  }
+  
+  function priceHighToLow() {
+    products.sort((a, b) => b.price - a.price);
+    setProducts(products.slice());
+  }
  
-function priceHighToLow() {
-  products.sort((a, b) => b.price - a.price);
-  setProducts(products.slice());
-}
- 
-function ratingLowToHigh() {
-  products.sort((a, b) => a.rating.rate - b.rating.rate);
-  setProducts(products.slice());
-}
- 
-function ratingHighToLow() {
-  products.sort((a, b) => b.rating.rate - a.rating.rate);
-  setProducts(products.slice());
-}
+  function ratingLowToHigh() {
+    products.sort((a, b) => a.rating.rate - b.rating.rate);
+    setProducts(products.slice());
+  }
+  
+  function ratingHighToLow() {
+    products.sort((a, b) => b.rating.rate - a.rating.rate);
+    setProducts(products.slice());
+  }
  
   return (
     <div>
