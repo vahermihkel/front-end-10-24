@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import productsFromFile from "../../data/products.json";
+import React, { useEffect, useState } from 'react';
+// import productsFromFile from "../../data/products.json";
 //import cartFromFile from '../../data/cart.json';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Link } from 'react-router-dom';
@@ -8,7 +8,24 @@ import Gallery from '../../components/Gallery';
  
  
 function HomePage() {
-  const [products, setProducts] = useState(productsFromFile.slice());
+  // const [products, setProducts] = useState(productsFromFile.slice());
+  const [categories, setCategories] = useState([]);
+  const categoryUrl = "https://webshop-10-24-default-rtdb.europe-west1.firebasedatabase.app/categories.json";
+
+  useEffect(() => {
+    fetch(categoryUrl)
+      .then(res => res.json())
+      .then(json => setCategories(json || []));  // || [] --> kui on "null", siis võta parempoolne 
+  }, []);
+
+  const [products, setProducts] = useState([]);
+  const productUrl = "https://webshop-10-24-default-rtdb.europe-west1.firebasedatabase.app/products.json";
+  
+  useEffect(() => {
+    fetch(productUrl)
+      .then(res => res.json())
+      .then(json => setProducts(json || []));  // || [] --> kui on "null", siis võta parempoolne 
+  }, []);
  
   function addToCart(product) {
     //cartFromFile.push(product);
@@ -53,6 +70,11 @@ function HomePage() {
     products.sort((a, b) => b.rating.rate - a.rating.rate);
     setProducts(products.slice());
   }
+
+  function filterByCategory(categoryClicked) {
+    const result = products.filter(product => product.category === categoryClicked);
+    setProducts(result);
+  }
  
   return (
     <div>
@@ -79,15 +101,20 @@ function HomePage() {
           Filter
         </Dropdown.Toggle>
         <Dropdown.Menu title="Filter: " id="custom-navbar-sort">
-            <Dropdown.Item >Clothes</Dropdown.Item>
+            {/* <Dropdown.Item >Clothes</Dropdown.Item>
             <Dropdown.Item >Jewelry</Dropdown.Item>
             <Dropdown.Item  >Electronics</Dropdown.Item>
-            <Dropdown.Item  >Bags</Dropdown.Item>
+            <Dropdown.Item  >Bags</Dropdown.Item> */}
+            {categories.map(category => 
+              <Dropdown.Item onClick={() => filterByCategory(category)} key={category}>{category}</Dropdown.Item>
+            )}
         </Dropdown.Menu>
       </Dropdown>
  
       <br></br>
       <br></br> 
+
+      <div>Total products: {products.length}</div>
  
       <h1>Our products:</h1> <br></br>
  

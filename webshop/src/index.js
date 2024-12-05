@@ -10,12 +10,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <App />
+      <App />
     </BrowserRouter>
   </React.StrictMode>
 );
 
 // 15. E 02.12   13.30-16.45   
-// 16. K 04.12   13.30-16.45  failid. või proovitöö: TWN, LHV
-// 17. K 11.12   13.30-16.45
+// 16. K 04.12   13.30-16.45 andmebaas
+// 17. K 11.12   13.30-16.45 kogus ostukorvis, css moodulid, typescript, context 
 // 18. K 18.12   15.00-16.30  2ak/h
+// lõpuprojekt: vabalt valitud teemal. Firebase üles laetud.

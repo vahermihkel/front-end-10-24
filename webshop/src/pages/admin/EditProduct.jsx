@@ -1,10 +1,13 @@
-import React, { useRef, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import productsFromFile from '../../data/products.json'
+import React, { useEffect, useRef, useState } from 'react';
+import { Spinner } from 'react-bootstrap';
+import { useNavigate, useParams } from 'react-router-dom';
+//import productsFromFile from '../../data/products.json'
  
 function EditProduct() {
   const {index} = useParams();
-  const found = productsFromFile[index];
+  const [products, setProducts] = useState([]);
+
+  const found = products[index];
  
   const idRef = useRef();
   const titleRef = useRef();
@@ -16,11 +19,25 @@ function EditProduct() {
   const activeRef = useRef();
   const rateRef = useRef();
   const countRef = useRef();
+  const navigate = useNavigate(); // Reactis ilma refreshita URLi vahetuseks JavaScriptis
 
   const [idUnique, setIdUnique] = useState(true);
+
+  const productUrl = "https://webshop-10-24-default-rtdb.europe-west1.firebasedatabase.app/products.json";
+  
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(productUrl)
+      .then(res => res.json())
+      .then(json => {
+        setProducts(json || []);
+        setLoading(false);
+      });  // || [] --> kui on "null", siis võta parempoolne 
+  }, []);
  
 function change() {
-  productsFromFile[index] = {
+  products[index] = {
     "id": Number(idRef.current.value), // üksikut toodet vaatamisel
     "title": titleRef.current.value,
     "price": Number(priceRef.current.value), // ostukorvis kokkuliitmisel
@@ -34,7 +51,15 @@ function change() {
             "count": Number(countRef.current.value)
         }
   };
+  fetch(productUrl, {method: "PUT", body: JSON.stringify(products)})
+    .then(() => navigate("/admin/maintain-products"));
 }
+
+// <Link> --> HTMLs (töötab alati, aga Reacti sees)
+// <a href= --> HTMLs (töötab alati, suunab rakendusest välja)
+
+// const navigate = useNavigate()    navigate("/uus-url") --> JS. Reacti siseseks liikumiseks
+// window.location.href = "http//www.bla.bla" --> JS. suunab rakendusest välja
 
   function checkIdUniqueness() {
     // .filter --> küsida kas .length on 0
@@ -45,7 +70,7 @@ function change() {
     // 25000 toodet --> teen .filter, siis ta teeb alati lõpuni välja
     // 25000 toodet --> teen .find ja leitakse 10ndana, siis juba lõppeb
    
-    const result = productsFromFile.filter(product => product.id === Number(idRef.current.value))
+    const result = products.filter(product => product.id === Number(idRef.current.value))
     if (result.length === 0) {
       setIdUnique(true);
     } else {
@@ -58,6 +83,10 @@ function change() {
     // } else {
     //   setIdUnique(false);
     // }
+  }
+
+  if (loading === true) {
+    return <Spinner />
   }
 
   if (found === undefined) {
@@ -87,15 +116,16 @@ function change() {
         <label>Stock: </label> <br></br>
         <input ref={stockRef} type="text" defaultValue={found.stock}></input> <br></br>
         <label>Active: </label> <br></br>
-        <input ref={activeRef} type="checkbox" defaultValue={found.active}></input> <br></br>
+        <input ref={activeRef} type="checkbox" defaultChecked={found.active}></input> <br></br>
         <label>Rating rate: </label> <br></br>
         <input ref={rateRef} type="text" defaultValue={found.rating.rate}></input> <br></br>
         <label>Rating count: </label> <br></br>
         <input ref={countRef} type="text" defaultValue={found.rating.count}></input> <br></br>
- 
-      <Link to="/admin/maintain-products">
         <button onClick={change}>Update</button>
-        </Link>
+
+        {/* <Link to="/admin/maintain-products">
+          
+        </Link> */}
     </div>
   )
 }

@@ -19,6 +19,7 @@ import MaintainProducts from './pages/admin/MaintainProducts';
 import AddProduct from './pages/admin/AddProduct';
 import EditProduct from './pages/admin/EditProduct';
 import SingleProduct from './pages/global/SingleProduct';
+import MaintainCategories from './pages/admin/MaintainCategories';
 // import SingleProduct from './pages/global/SingleProduct';
 // import AdminHome from './pages/admin/AdminHome';
 // import AddProduct from './pages/admin/AddProduct';
@@ -42,8 +43,8 @@ function App() {
         <Route path="cart" element={ <Cart />}></Route>
         {/* 
         <Route path="admin" element={ <AdminHome />}></Route>
-        <Route path="admin/maintain-categories" element={ <MaintainCategories />}></Route>
         <Route path="admin/maintain-shops" element={ <MaintainShops />}></Route> */}
+        <Route path="admin/maintain-categories" element={ <MaintainCategories />}></Route>
         <Route path="product/:index" element={ <SingleProduct />}></Route>
         <Route path="admin/add-product" element={ <AddProduct />}></Route>
         <Route path="admin/edit-product/:index" element={ <EditProduct />}></Route>

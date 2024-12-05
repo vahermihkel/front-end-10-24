@@ -1,15 +1,22 @@
-import React, { useRef, useState } from 'react';
-import productsFromFile from "../../data/products.json";
+import React, { useEffect, useRef, useState } from 'react';
+// import productsFromFile from "../../data/products.json";
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
  
  
 function MaintainProducts() {
-  const [products, setProducts] = useState(productsFromFile.slice());
   const findRef = useRef();
+  const [products, setProducts] = useState([]);
+  const productUrl = "https://webshop-10-24-default-rtdb.europe-west1.firebasedatabase.app/products.json";
+  
+  useEffect(() => {
+    fetch(productUrl)
+      .then(res => res.json())
+      .then(json => setProducts(json || []));  // || [] --> kui on "null", siis võta parempoolne 
+  }, []);
  
   function find() {
-    const res = productsFromFile.filter(product =>
+    const res = products.filter(product =>
         product.title.toLowerCase().includes(findRef.current.value.toLowerCase())
         );
     setProducts(res);
