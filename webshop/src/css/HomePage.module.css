@@ -1,0 +1,24 @@
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.product {
+  border: 1px solid lightgray;
+  padding: 20px;
+}
+
+.product img {
+  width: 100px;
+  height: 100px;
+  transition: 0.5s;
+}
+
+.product:hover img {
+  transform: scale(105%);
+  transition: 0.5s;
+}
+
+.title {
+  height: 70px;
+}

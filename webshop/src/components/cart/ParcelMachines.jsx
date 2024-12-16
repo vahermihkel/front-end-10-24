@@ -25,7 +25,7 @@ function ParcelMachines() {
         <option value="">3</option> */}
         {pms
           .filter(pm => pm.A0_NAME === "EE")
-          .map(pm => <option>{pm.NAME}</option>)}
+          .map(pm => <option key={pm.NAME}>{pm.NAME}</option>)}
       </select>
     </div>
   )

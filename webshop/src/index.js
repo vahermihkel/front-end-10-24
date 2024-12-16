@@ -4,13 +4,19 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css';
 import App from './App';
 import { BrowserRouter } from "react-router-dom" ;
+import { CartSumProvider } from './store/CartSumContext';
  
  
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+    {/* globaalsus, kus paistab mul see globaalne muutuja välja
+    PRAEGU: App.js sees ja kõikides kohtades mis on omakorda App.js sees
+    */}
+      <CartSumProvider>
+        <App />
+      </CartSumProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

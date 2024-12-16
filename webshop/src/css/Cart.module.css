@@ -33,13 +33,13 @@
   padding: 0 !important;
 }
 
-.product-left {
+.product__left {
   display: flex;
   justify-content: space-between;
   width: 500px;
 }
 
-.product-right {
+.product__right {
   display: flex;
   justify-content: space-between;
   width: 200px;
@@ -60,11 +60,11 @@
   select {
     width: 300px;
   }
-  .product-left {
+  .product__left {
     display: block;
     text-align: left;
   }
-  .product-right {
+  .product__right {
     display: block;
     text-align: right;
   }

@@ -1,0 +1,11 @@
+.active {
+  background-color: rgb(156, 216, 156);
+}
+
+.inactive {
+  background-color: rgb(241, 190, 190);
+}
+
+.thead {
+  background-color: brown;
+}

@@ -2,11 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 // import productsFromFile from "../../data/products.json";
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
- 
+import styles from "../../css/MaintainProducts.module.css"
+import { Product } from '../../models/Product';
+
  
 function MaintainProducts() {
-  const findRef = useRef();
-  const [products, setProducts] = useState([]);
+  const findRef = useRef<HTMLInputElement>(null);
+  const [products, setProducts] = useState<Product[]>([]);
   const productUrl = "https://webshop-10-24-default-rtdb.europe-west1.firebasedatabase.app/products.json";
   
   useEffect(() => {
@@ -16,13 +18,18 @@ function MaintainProducts() {
   }, []);
  
   function find() {
+    const refCurrent = findRef.current;
+    if (refCurrent === null) { // kui jäi HTMLi panemata
+      console.log("REF JÄI HTMLI PANEMATA!!!");
+      return; // edasi ei lähe
+    }
     const res = products.filter(product =>
-        product.title.toLowerCase().includes(findRef.current.value.toLowerCase())
+        product.title.toLowerCase().includes(refCurrent.value.toLowerCase())
         );
     setProducts(res);
   }
   
-  function erase(index) {
+  function erase(index: number) {
     products.splice(index, 1);
     setProducts(products.slice());
     toast.success("Product is successfully deleted");
@@ -32,12 +39,12 @@ function MaintainProducts() {
     <div>
   <br></br>
  
-      <input placeHolder="otsi" onChange={find} ref={findRef} type="text"></input>
+      <input placeholder="otsi" onChange={find} ref={findRef} type="text"></input>
  
   <br></br>
   <br></br> 
       <table>
-            <thead>
+            <thead className={styles.thead}>
             <tr>
             <th>Image</th>
             <th>Title</th>
@@ -53,7 +60,7 @@ function MaintainProducts() {
         </thead>
                 <tbody>
         {products.map((product, index) =>
-        <tr key={product.id} className={product.active ? "product-active" : "inactive"}>
+        <tr key={product.id} className={product.active ? styles.active : styles.inactive}>
             <td><img style={{width:"100px"}} src={product.image} alt="" /></td>
             <td>{product.title}</td>
             <td>Price: {product.price}€</td>

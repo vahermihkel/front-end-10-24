@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 // import productsFromFile from "../../data/products.json";
 //import cartFromFile from '../../data/cart.json';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Link } from 'react-router-dom';
 import Gallery from '../../components/Gallery';
- 
- 
+import styles from "../../css/HomePage.module.css";
+import { CartSumContext } from '../../store/CartSumContext';
+// kui impordin: import "../../css/HomePage.css"; läheb üle terve projekti
+// pean importima, et ta oleks ainult siin failis kasutusel:
+// import MUUTUJA_NIMI from "../../css/HomePage.css";
  
 function HomePage() {
   // const [products, setProducts] = useState(productsFromFile.slice());
   const [categories, setCategories] = useState([]);
   const categoryUrl = "https://webshop-10-24-default-rtdb.europe-west1.firebasedatabase.app/categories.json";
+  const {setCartSum} = useContext(CartSumContext);
 
   useEffect(() => {
     fetch(categoryUrl)
@@ -27,12 +31,25 @@ function HomePage() {
       .then(json => setProducts(json || []));  // || [] --> kui on "null", siis võta parempoolne 
   }, []);
  
+              // see mis avalehelt tuleb - ilma koguseta
   function addToCart(product) {
     //cartFromFile.push(product);
     const cartLS = JSON.parse(localStorage.getItem("cart")) || [];
-    cartLS.push(product);
+    const found = cartLS.find(cartProduct => cartProduct.toode.id === product.id)
+    if (found !== undefined) {
+      // kui ta juba on olemas, siis suurendan kogust
+      found.kogus++;
+      // product.kogus += 1;
+      // product.kogus = product.kogus + 1;
+    } else {
+      // kui teda pole olemas, siis pushin
+      cartLS.push({"toode": product, "kogus": 1});
+    }
     localStorage.setItem("cart", JSON.stringify(cartLS));
 
+    let sum = 0;
+    cartLS.forEach(cartProduct => sum = sum + cartProduct.toode.price * cartProduct.kogus);
+    setCartSum(sum);
     // LocalStorage-sse ARRAY lisamiseks
     // 1. võtta localStorage-st:   localStorage.getItem
     // 2. võtta jutumärgid maha:   JSON.parse()
@@ -118,20 +135,21 @@ function HomePage() {
  
       <h1>Our products:</h1> <br></br>
  
-      {products
-        .filter(product => product.active === true)
-        .map(product =>
-        <div key={product.id}>
-          <img style={{width: "100px"}} src={product.image} alt=""></img>
-          <div>{product.title}</div>
-          <div>{product.price}€</div>
-          <button disabled={product.stock === 0} onClick={() => addToCart(product)}>Add to cart</button>
-          <Link to={"/product/" +  product.id}>
-            <button>See details</button>
-          </Link>
-          <br></br> <br></br>
-        </div>
-      )}
+      <div className={styles.products}>
+        {products
+          .filter(product => product.active === true)
+          .map(product =>
+          <div className={styles.product} key={product.id}>
+            <img src={product.image} alt=""></img>
+            <div className={styles.title}>{product.title}</div>
+            <div>{product.price}€</div>
+            <button disabled={product.stock === 0} onClick={() => addToCart(product)}>Add to cart</button>
+            <Link to={"/product/" +  product.id}>
+              <button>See details</button>
+            </Link>
+          </div>
+        )}
+      </div>
     </div>
   )
 }
